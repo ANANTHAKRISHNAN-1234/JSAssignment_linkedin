@@ -49,21 +49,25 @@ function changeContent() {
   quote.innerHTML = `"${quoteLists[randomIndex].q.stringValue}"`;
   author.innerHTML = `-${quoteLists[randomIndex].a.stringValue}`;
 }
+
 function shareOnLinkedIn() {
   const textToShare = document.getElementById("quotetext").innerText;
+  document
+    .querySelector('meta[property="og:title"]')
+    .setAttribute("content", textToShare);
 
-  // Encode the text and use it as part of a URL on your site
+  // ✅ Replace this with your real live URL
   const baseUrl =
-    "http://127.0.0.1:5501/Assignment/14082025_day1_QuoteAssignment/index.html"; // You must have this page that shows the content
-  const urlWithText = baseUrl + "?content=" + encodeURIComponent(textToShare);
+    "https://ananthakrishnan-1234.github.io/JSAssignment_linkedin/index.html";
 
-  // LinkedIn Share URL with your generated URL
-  const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-    urlWithText
+  const urlWithQuote = baseUrl + "?content=" + encodeURIComponent(textToShare);
+
+  const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+    urlWithQuote
   )}`;
 
-  // Open LinkedIn share window
-  window.open(linkedInUrl, "_blank");
+  window.open(linkedInShareUrl, "_blank");
 }
 //onload
 getQuotes();
+
